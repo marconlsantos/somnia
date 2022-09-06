@@ -14,7 +14,9 @@
       "*": [
         "node_modules/*"
       ]
-    }
+    },
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
   },
   "include": [
     "src/**/*"

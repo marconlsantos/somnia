@@ -21,6 +21,8 @@
     "forge": "./forge.config.js"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@babel/preset-typescript": "^7.18.6",
     "@electron-forge/cli": "^6.0.0-beta.65",
     "@electron-forge/maker-deb": "^6.0.0-beta.65",
     "@electron-forge/maker-rpm": "^6.0.0-beta.65",
@@ -30,6 +32,8 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "@vercel/webpack-asset-relocator-loader": "1.7.3",
+    "babel-loader": "^8.2.5",
+    "babel-preset-solid": "^1.5.4",
     "css-loader": "^6.0.0",
     "electron": "20.1.1",
     "eslint": "^8.0.1",
@@ -41,6 +45,7 @@
     "typescript": "~4.5.4"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "solid-js": "^1.5.4"
   }
 }
