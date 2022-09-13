@@ -5,7 +5,7 @@ rules.push({
   test: /\.css$/,
   use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
 },
-    {
+  {
     test: /\.(png|svg|jpg|jpeg|gif)$/,
     type: "asset/resource",
     generator: {

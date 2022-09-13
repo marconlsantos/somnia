@@ -18,13 +18,10 @@ module.exports = [
   },
   {
     test: /\.tsx?$/,
-    exclude: [/(node_modules|\.webpack)/],
+    exclude: [/(node_modules|\.webpack|out)/],
     use: [
       {
-        loader: "babel-loader",
-        options: {
-          presets: ["solid", "@babel/preset-typescript"],
-        },
+        loader: "babel-loader"
       },
     ],
   }
