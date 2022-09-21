@@ -2,22 +2,42 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1" />
-  <meta name="theme-color"
-        content="#000000" />
-  <link rel="shortcut icon"
-        type="image/ico"
-        href="/src/assets/favicon.ico" />
-  <title>Solid App</title>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible"
+            content="chrome=1" />
+      <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+            name="viewport" />
+      <meta name="viewport"
+            content="width=device-width" />
+      <link rel="shortcut icon"
+            type="image/ico"
+            href="/src/assets/favicon.ico" />
+      <title>Somnia</title>
 </head>
 
 <body>
-  <div id="root"></div>
 
-  <script src="/index.tsx"
-          type="module"></script>
-</body>
+      <body class="with-custom-webkit-scrollbars"
+            data-dm-shortcut-enabled="true"
+            data-set-preferred-mode-onload="true">
+            <!-- Modals go here -->
+            <!-- Reference: https://www.gethalfmoon.com/docs/modal -->
+
+            <!-- Page wrapper start -->
+            <div class="page-wrapper">
+
+                  <!-- Sticky alerts (toasts), empty container -->
+                  <!-- Reference: https://www.gethalfmoon.com/docs/sticky-alerts-toasts -->
+                  <div class="sticky-alerts"></div>
+
+                  <!-- Content wrapper start -->
+                  <div class="content-wrapper">
+                        <div id="root"></div>
+                  </div>
+                  <!-- Content wrapper end -->
+
+            </div>
+            <!-- Page wrapper end -->
+      </body>
 
 </html>
