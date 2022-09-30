@@ -1,6 +1,6 @@
 import DreamSymbol from './DreamSymbol';
 
-class Dream {
+export default class Dream {
     protected id: number;
 
     dreamDate: Date;

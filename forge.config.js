@@ -32,7 +32,10 @@ module.exports = {
           "entryPoints": [
             {
               "html": "./src/renderer/index.html",
-              "js": "./src/renderer/index.tsx",
+              "js": "./src/renderer/renderer.tsx",
+              "preload": {
+                js: "./src/renderer/preload.ts"
+              },
               "name": "main_window"
             }
           ]
@@ -40,4 +43,4 @@ module.exports = {
       }
     ]
   ]
-}
+};

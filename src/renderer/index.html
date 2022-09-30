@@ -15,29 +15,27 @@
       <title>Somnia</title>
 </head>
 
-<body>
+<body class="with-custom-webkit-scrollbars"
+      data-dm-shortcut-enabled="true"
+      data-set-preferred-mode-onload="true">
+      <!-- Modals go here -->
+      <!-- Reference: https://www.gethalfmoon.com/docs/modal -->
 
-      <body class="with-custom-webkit-scrollbars"
-            data-dm-shortcut-enabled="true"
-            data-set-preferred-mode-onload="true">
-            <!-- Modals go here -->
-            <!-- Reference: https://www.gethalfmoon.com/docs/modal -->
+      <!-- Page wrapper start -->
+      <div class="page-wrapper">
 
-            <!-- Page wrapper start -->
-            <div class="page-wrapper">
+            <!-- Sticky alerts (toasts), empty container -->
+            <!-- Reference: https://www.gethalfmoon.com/docs/sticky-alerts-toasts -->
+            <div class="sticky-alerts"></div>
 
-                  <!-- Sticky alerts (toasts), empty container -->
-                  <!-- Reference: https://www.gethalfmoon.com/docs/sticky-alerts-toasts -->
-                  <div class="sticky-alerts"></div>
-
-                  <!-- Content wrapper start -->
-                  <div class="content-wrapper">
-                        <div id="root"></div>
-                  </div>
-                  <!-- Content wrapper end -->
-
+            <!-- Content wrapper start -->
+            <div class="content-wrapper">
+                  <div id="root"></div>
             </div>
-            <!-- Page wrapper end -->
-      </body>
+            <!-- Content wrapper end -->
+
+      </div>
+      <!-- Page wrapper end -->
+</body>
 
 </html>

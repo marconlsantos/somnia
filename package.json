@@ -9,9 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts,.tsx .",
-    "graph-main": "npx webpack ./src/main/index.ts ./.webpack/main/index.js --json > main-stats.json && npx webpack-stats-graph main-stats.json",
-    "graph-renderer": "npx webpack ./src/renderer/renderer.ts ./.webpack/main/index.js --json > renderer-stats.json && npx webpack-stats-graph renderer-stats.json"
+    "lint": "eslint --ext .ts,.tsx ."
   },
   "keywords": [],
   "author": {
@@ -37,7 +35,7 @@
     "babel-loader": "^8.2.5",
     "babel-preset-solid": "^1.5.4",
     "css-loader": "^6.0.0",
-    "electron": "20.1.1",
+    "electron": "^21.0.1",
     "eslint": "^8.0.1",
     "eslint-plugin-import": "^2.25.0",
     "fork-ts-checker-webpack-plugin": "^7.2.1",
@@ -46,8 +44,7 @@
     "style-loader": "^3.0.0",
     "ts-loader": "^9.2.2",
     "typescript": "~4.5.4",
-    "webpack-cli": "^4.10.0",
-    "webpack-stats-graph": "^1.0.8"
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
