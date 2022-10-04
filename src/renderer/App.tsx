@@ -1,9 +1,7 @@
 import { Component, ErrorBoundary } from 'solid-js';
 import * as halfmoon from 'halfmoon';
-
 import DreamList from "./Dream/List";
 
-import 'halfmoon/css/halfmoon-variables.min.css';
 import './App.module.css';
 
 const App: Component = () => {
