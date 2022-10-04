@@ -6,16 +6,12 @@ const DreamList: Component = () => {
 
     const [dreams, setDreams] = createSignal(emptyDreams);
 
-    let info: any;
-
     onMount(() => {
         setDreams(window.dreamsAPI.getDreams());
     });
 
     return (
         <ErrorBoundary fallback={err => err}>
-            <p ref={info} id="info"></p>
-
             <table class="table table-hover">
                 <thead>
                     <tr>
