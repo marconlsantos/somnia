@@ -11,6 +11,10 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx ."
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marconlsantos/somnia.git"
+  },
   "keywords": [],
   "author": {
     "name": "Marco Neves de Lemos Santos",
