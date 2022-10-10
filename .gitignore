@@ -88,3 +88,6 @@ typings/
 # Electron-Forge
 out/
 package-lock.json
+src/prisma/somnia.sqlite-journal
+src/prisma/somnia.sqlite
+src/prisma/migrations/migration_lock.toml

@@ -1,4 +1,8 @@
-import { IDreamsAPI } from './domain/IDreamsAPI.ts';
+import { Dream } from '@prisma/client';
+
+export interface IDreamsAPI {
+    getDreams: () => Promise<Dream[]>;
+}
 
 declare global {
     interface Window {

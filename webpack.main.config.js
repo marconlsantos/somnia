@@ -1,3 +1,6 @@
+const CopyPlugin = require('copy-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
+
 module.exports = {
   /**
    * This is the main entry point for your application, it's the first file
@@ -10,5 +13,13 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.ts']
-  }
+  },
+  externals: [nodeExternals()],
+  plugins: [
+    new CopyPlugin(
+      {
+        patterns: ["./src/prisma/schema.prisma"],
+      }
+    )
+  ]
 };

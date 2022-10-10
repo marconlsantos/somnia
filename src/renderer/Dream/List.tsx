@@ -1,13 +1,15 @@
 import { Component, createSignal, ErrorBoundary, For, onMount, Show } from 'solid-js';
-import Dream from '../../domain/Dream';
+import { Dream } from '@prisma/client';
 
 const DreamList: Component = () => {
-    const emptyDreams: Dream[] = [];
+    let dreamsToShow: Dream[] = [];
 
-    const [dreams, setDreams] = createSignal(emptyDreams);
+    const [dreams, setDreams] = createSignal(dreamsToShow);
 
-    onMount(() => {
-        setDreams(window.dreamsAPI.getDreams());
+    onMount(async () => {
+        dreamsToShow = await window.dreamsAPI.getDreams();
+
+        setDreams(dreamsToShow);
     });
 
     return (
@@ -18,16 +20,14 @@ const DreamList: Component = () => {
                         <th>Date</th>
                         <th>Title</th>
                         <th>Narration</th>
-                        <th>Emotions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <For each={dreams()}>{(dream) =>
                         <tr>
-                            <td>{dream.dreamDate.toDateString()}</td>
+                            <td>{dream.dreamedAt.toDateString()}</td>
                             <td>{dream.title}</td>
                             <td>{`${dream.narration.substring(0, 25)} ...`}</td>
-                            <td>{dream.emotions.join(',')}</td>
                         </tr>
                     }
                     </For>
@@ -35,7 +35,7 @@ const DreamList: Component = () => {
                 <Show when={dreams().length == 0}>
                     <tfoot>
                         <tr>
-                            <td colSpan={4}>No dreams available.</td>
+                            <td colSpan={3}>No dreams available.</td>
                         </tr>
                     </tfoot>
                 </Show>

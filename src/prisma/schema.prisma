@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Dream {
+  id             Int                @id @default(autoincrement())
+  dreamedAt      DateTime           @default(now())
+  title          String
+  narration      String
+  interpretation String?
+  symbols        DreamDreamSymbol[]
+}
+
+model DreamSymbol {
+  id            Int                @id @default(autoincrement())
+  isUniversal   Boolean
+  referenceCode String
+  dreams        DreamDreamSymbol[]
+}
+
+model DreamDreamSymbol {
+  Dream    Dream?       @relation(fields: [dreamId], references: [id])
+  dreamId  Int
+  Symbol   DreamSymbol? @relation(fields: [symbolId], references: [id])
+  symbolId Int
+
+  @@id([dreamId, symbolId])
+}
