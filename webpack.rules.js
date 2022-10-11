@@ -15,14 +15,5 @@ module.exports = [
         outputAssetBase: "native_modules",
       },
     },
-  },
-  {
-    test: /\.tsx?$/,
-    exclude: [/(node_modules|\.webpack|out)/],
-    use: [
-      {
-        loader: "babel-loader"
-      },
-    ],
   }
 ];

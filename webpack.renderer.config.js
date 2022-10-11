@@ -10,6 +10,15 @@ rules.push({
     generator: {
       filename: "[name][ext]"
     }
+  },
+  {
+    test: /\.tsx?$/,
+    exclude: [/(node_modules|\.webpack|out)/],
+    use: [
+      {
+        loader: "babel-loader"
+      },
+    ],
   }
 );
 
