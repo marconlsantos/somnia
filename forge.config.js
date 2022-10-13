@@ -1,5 +1,7 @@
 module.exports = {
-  "packagerConfig": {},
+  "packagerConfig": {
+    "darwinDarkModeSupport": true
+  },
   "makers": [
     {
       "name": "@electron-forge/maker-squirrel",
@@ -9,9 +11,7 @@ module.exports = {
     },
     {
       "name": "@electron-forge/maker-zip",
-      "platforms": [
-        "darwin"
-      ]
+      "config": {}
     },
     {
       "name": "@electron-forge/maker-deb",
@@ -19,6 +19,10 @@ module.exports = {
     },
     {
       "name": "@electron-forge/maker-rpm",
+      "config": {}
+    },
+    {
+      "name": '@electron-forge/maker-dmg',
       "config": {}
     }
   ],
