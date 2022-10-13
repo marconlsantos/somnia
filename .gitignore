@@ -89,5 +89,4 @@ typings/
 out/
 
 #Somnia
-package-lock.json
 src/prisma/migrations/migration_lock.toml
