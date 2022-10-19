@@ -12,12 +12,14 @@ export default class SomniaApp {
     static mainWindow: MainWindow;
 
     private static onReady() {
+        console.info("[Somnia] Application onReady executing");
+
         // Create the browser window.
         SomniaApp.createMainWindow();
     }
 
     private static createMainWindow() {
-        this.mainWindow = new MainWindow({
+        SomniaApp.mainWindow = new MainWindow({
             width: 1281,
             height: 854,
             webPreferences: {
@@ -25,16 +27,18 @@ export default class SomniaApp {
             }
         });
 
-        this.mainWindow.setHandlers();
+        SomniaApp.mainWindow.setHandlers();
 
         // and load the index.html of the app.
-        this.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+        SomniaApp.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
         // Open the DevTools.
-        this.mainWindow.webContents.openDevTools();
+        SomniaApp.mainWindow.webContents.openDevTools();
     }
 
     private static onActivate() {
+        console.info("[Somnia] Application onActivate executing");
+
         // On OS X it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
         if (BrowserWindow.getAllWindows().length === 0) {
@@ -43,17 +47,20 @@ export default class SomniaApp {
     }
 
     private static onWindowAllClosed() {
+        console.info("[Somnia] Application onWindowAllClosed executing");
+
         if (process.platform !== 'darwin') {
             SomniaApp.application.quit();
         }
     }
 
     static main(app: App) {
+        console.info("[Somnia] Application starting");
+
         SomniaApp.application = app;
 
         SomniaApp.application.on("ready", this.onReady);
         SomniaApp.application.on('window-all-closed', this.onWindowAllClosed);
         SomniaApp.application.on('activate', this.onActivate);
-
     }
 }
