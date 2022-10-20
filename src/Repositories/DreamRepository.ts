@@ -1,8 +1,9 @@
 import { Dream, Prisma, PrismaClient } from "@prisma/client";
 
 export default class DreamRepository {
+    private static client = new PrismaClient();
+
     async getPage(searchFilter: string, pageSize: number, currentPage: number): Promise<Dream[]> {
-        const client = new PrismaClient();
 
         let result: Dream[] = [];
 
@@ -15,31 +16,29 @@ export default class DreamRepository {
             if (searchFilter != null && searchFilter.trim().length > 0) {
                 const argsWithFilter = { ...pagingArgs, ...this.GetSubsetFrom(searchFilter) };
 
-                result = await client.dream.findMany(argsWithFilter);
+                result = await DreamRepository.client.dream.findMany(argsWithFilter);
             } else {
-                result = await client.dream.findMany(pagingArgs);
+                result = await DreamRepository.client.dream.findMany(pagingArgs);
             }
 
         } catch (error) {
             console.error(error);
         }
         finally {
-            client.$disconnect;
+            DreamRepository.client.$disconnect;
         }
 
         return result;
     }
 
     async getPageCount(searchFilter: string, pageSize: number): Promise<number> {
-        const client = new PrismaClient();
-
         let result = 0;
 
         try {
             if (searchFilter != null && searchFilter.trim().length > 0) {
-                result = await client.dream.count(this.GetSubsetFrom(searchFilter));
+                result = await DreamRepository.client.dream.count(this.GetSubsetFrom(searchFilter));
             } else {
-                result = await client.dream.count();
+                result = await DreamRepository.client.dream.count();
             }
 
             result = Math.ceil(result / pageSize);
@@ -47,7 +46,7 @@ export default class DreamRepository {
             console.error(error);
         }
         finally {
-            client.$disconnect;
+            DreamRepository.client.$disconnect;
         }
 
         return result;
