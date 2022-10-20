@@ -20,16 +20,21 @@ export default class MainWindow extends BrowserWindow {
         super(options);
     }
 
-    private async handleGetDreamPage(event: IpcMainInvokeEvent, pageSize: number, currentPage: number): Promise<Dream[]> {
+    private async handleGetDreamPage(event: IpcMainInvokeEvent,
+        searchFilter: string,
+        pageSize: number,
+        currentPage: number): Promise<Dream[]> {
         const dreamRepository = new DreamRepository();
 
-        return await dreamRepository.getPage(pageSize, currentPage);
+        return await dreamRepository.getPage(searchFilter, pageSize, currentPage);
     }
 
-    private async handleGetDreamPageCount(event: IpcMainInvokeEvent, pageSize: number): Promise<number> {
+    private async handleGetDreamPageCount(event: IpcMainInvokeEvent,
+        searchFilter: string,
+        pageSize: number): Promise<number> {
         const dreamRepository = new DreamRepository();
 
-        return await dreamRepository.getPageCount(pageSize);
+        return await dreamRepository.getPageCount(searchFilter, pageSize);
     }
 
     /**

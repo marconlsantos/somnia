@@ -1,8 +1,8 @@
 import { Dream } from '@prisma/client';
 
 export interface IDreamsAPI {
-    getDreamPage: (pageSize: number, currentPage: number) => Promise<Dream[]>;
-    getDreamPageCount: (pageSize: number) => Promise<number>;
+    getDreamPage: (searchFilter: string, pageSize: number, currentPage: number) => Promise<Dream[]>;
+    getDreamPageCount: (searchFilter: string, pageSize: number) => Promise<number>;
 }
 
 declare global {

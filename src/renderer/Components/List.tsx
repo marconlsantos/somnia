@@ -2,7 +2,7 @@ import { Component, createResource, createSignal, ErrorBoundary, For, onMount, S
 import { Dream } from '@prisma/client';
 
 const DreamList: Component = () => {
-    const pageSize = 50;
+    const pageSize = 5;
     let pageCount = 1;
 
     const [totalPages, setTotalPages] = createSignal(1);
@@ -13,14 +13,14 @@ const DreamList: Component = () => {
     onMount(async () => {
         console.info("[Somnia] Main window onMount execution");
 
-        pageCount = await window.dreamsAPI.getDreamPageCount(pageSize);
+        pageCount = await window.dreamsAPI.getDreamPageCount("", pageSize);
 
         setTotalPages(pageCount);
         setCurrentPage(1);
     });
 
     async function getCurrentDreamPage(source: number): Promise<Dream[]> {
-        return await window.dreamsAPI.getDreamPage(pageSize, source);
+        return await window.dreamsAPI.getDreamPage("", pageSize, source);
     }
 
     return (
@@ -65,7 +65,7 @@ const DreamList: Component = () => {
                         <li class="page-item ellipsis"></li>
                     </Show>
 
-                    <Show when={totalPages() != 1}>
+                    <Show when={totalPages() > 1}>
                         <li classList={{ "page-item": true, active: currentPage() == totalPages() }}>
                             <a href="#" class="page-link" onClick={() => setCurrentPage(totalPages())}>{totalPages()}</a>
                         </li>
