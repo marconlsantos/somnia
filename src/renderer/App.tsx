@@ -3,9 +3,6 @@ import * as halfmoon from 'halfmoon';
 import DreamList from "./Components/List";
 import NavigationBar from './Components/NavigationBar';
 
-import 'fontawesome-free/css/fontawesome.css';
-import 'fontawesome-free/css/solid.css';
-
 import './App.module.css';
 
 const App: Component = () => {

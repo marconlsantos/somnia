@@ -63,7 +63,7 @@
   "dependencies": {
     "@prisma/client": "^4.4.0",
     "electron-squirrel-startup": "^1.0.0",
-    "fontawesome-free": "^1.0.4",
+    "solid-icons": "^1.0.2",
     "solid-js": "^1.5.4"
   }
 }

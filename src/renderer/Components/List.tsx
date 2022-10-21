@@ -1,4 +1,5 @@
 import { Component, createResource, createSignal, ErrorBoundary, For, onMount, Show } from 'solid-js';
+import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
 import { Dream } from '@prisma/client';
 
 const DreamList: Component = () => {
@@ -29,7 +30,7 @@ const DreamList: Component = () => {
                 <ul class="pagination">
                     <li classList={{ "page-item": true, disabled: currentPage() == 1 }}>
                         <a href="#" class="page-link" onClick={() => setCurrentPage(currentPage() - 1)}>
-                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            <FaSolidChevronLeft class="align-middle" />
                             <span class="sr-only">Previous</span>
                         </a>
                     </li>
@@ -73,7 +74,7 @@ const DreamList: Component = () => {
 
                     <li classList={{ "page-item": true, disabled: currentPage() == totalPages() }}>
                         <a href="#" class="page-link" onClick={() => setCurrentPage(currentPage() + 1)}>
-                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            <FaSolidChevronRight class="align-middle" />
                             <span class="sr-only">Next</span>
                         </a>
                     </li>

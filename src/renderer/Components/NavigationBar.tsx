@@ -1,4 +1,5 @@
 import { Component, ErrorBoundary } from "solid-js";
+import { TbListSearch } from 'solid-icons/tb';
 
 const NavigationBar: Component = () => {
 
@@ -12,7 +13,7 @@ const NavigationBar: Component = () => {
                         <input type="text" class="form-control" placeholder="Search dreams" />
                         <div class="input-group-append">
                             <button class="btn">
-                                <i class="fa fa-search" aria-hidden="true"></i>
+                                <TbListSearch class="align-middle" size={24} />
                                 <span class="sr-only">Search dreams</span>
                             </button>
                         </div>
