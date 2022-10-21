@@ -13,7 +13,7 @@ export default class DreamRepository {
                 skip: pageSize * (currentPage - 1)
             };
 
-            if (searchFilter != null && searchFilter.trim().length > 0) {
+            if (isNullOrWhiteSpace(searchFilter)) {
                 const argsWithFilter = { ...pagingArgs, ...this.GetSubsetFrom(searchFilter) };
 
                 result = await DreamRepository.client.dream.findMany(argsWithFilter);
@@ -35,7 +35,7 @@ export default class DreamRepository {
         let result = 0;
 
         try {
-            if (searchFilter != null && searchFilter.trim().length > 0) {
+            if (isNullOrWhiteSpace(searchFilter)) {
                 result = await DreamRepository.client.dream.count(this.GetSubsetFrom(searchFilter));
             } else {
                 result = await DreamRepository.client.dream.count();
@@ -63,4 +63,8 @@ export default class DreamRepository {
             }
         };
     }
+}
+
+function isNullOrWhiteSpace(searchFilter: string) {
+    return searchFilter && searchFilter.trim().length;
 }

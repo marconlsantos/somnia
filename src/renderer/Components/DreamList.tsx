@@ -1,32 +1,62 @@
-import { Component, createResource, createSignal, ErrorBoundary, For, onMount, Show } from 'solid-js';
+import {
+    Accessor,
+    batch,
+    Component,
+    createEffect,
+    createResource,
+    createSignal,
+    ErrorBoundary,
+    For,
+    onMount,
+    Show
+} from 'solid-js';
 import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
 import { Dream } from '@prisma/client';
 
-const DreamList: Component = () => {
+const DreamList: Component<{ filter: Accessor<string>; }> = (props) => {
     const pageSize = 5;
     let pageCount = 1;
+
+    let previousFilter = "";
 
     const [totalPages, setTotalPages] = createSignal(1);
     const [currentPage, setCurrentPage] = createSignal(1);
 
-    const [dreamsToShow] = createResource(currentPage, getCurrentDreamPage);
+    const [dreamsToShow, { refetch }] = createResource(getCurrentDreamPage);
+
+    async function getCurrentDreamPage(): Promise<Dream[]> {
+        return await window.dreamsAPI.getDreamPage(props.filter(), pageSize, currentPage());
+    }
+
+    createEffect(() => {
+        batch(() => {
+            if (previousFilter !== props.filter()) {
+                resetToFirstPage();
+
+                previousFilter = props.filter();
+            }
+
+            //passing a info object to trigger reactivity
+            refetch({ filter: props.filter(), page: currentPage() });
+        });
+    });
+
+    async function resetToFirstPage() {
+        pageCount = await window.dreamsAPI.getDreamPageCount(props.filter(), pageSize);
+
+        setTotalPages(pageCount);
+        setCurrentPage(1);
+    }
 
     onMount(async () => {
         console.info("[Somnia] Main window onMount execution");
 
-        pageCount = await window.dreamsAPI.getDreamPageCount("", pageSize);
-
-        setTotalPages(pageCount);
-        setCurrentPage(1);
+        await resetToFirstPage();
     });
-
-    async function getCurrentDreamPage(source: number): Promise<Dream[]> {
-        return await window.dreamsAPI.getDreamPage("", pageSize, source);
-    }
 
     return (
         <ErrorBoundary fallback={err => err}>
-            <nav aria-label="Page navigation example" class='text-center'>
+            <nav class='text-center'>
                 <ul class="pagination">
                     <li classList={{ "page-item": true, disabled: currentPage() == 1 }}>
                         <a href="#" class="page-link" onClick={() => setCurrentPage(currentPage() - 1)}>
@@ -34,7 +64,6 @@ const DreamList: Component = () => {
                             <span class="sr-only">Previous</span>
                         </a>
                     </li>
-
 
                     <li classList={{ "page-item": true, active: currentPage() == 1 }}>
                         <a href="#" class="page-link" onClick={() => setCurrentPage(1)}>1</a>
