@@ -16,7 +16,6 @@ const App: Component = () => {
   return (
     <ErrorBoundary fallback={err => err}>
       <div class="page-wrapper with-navbar">
-        <div class="sticky-alerts"></div>
         <NavigationBar setFilter={setCurrentFilter} />
         <div class="content-wrapper">
           <DreamList filter={currentFilter} />

@@ -52,6 +52,16 @@ export default class DreamRepository {
         return result;
     }
 
+    async deleteDream(dreamId: number): Promise<boolean> {
+        try {
+            await DreamRepository.client.dream.delete({ where: { id: dreamId } });
+        } catch (error) {
+            return false;
+        }
+
+        return true;
+    }
+
     private GetSubsetFrom(searchFilter: string): Prisma.Subset<{ where: { OR: ({ title: { contains: string; }; } | { narration: { contains: string; }; } | { interpretation: { contains: string; }; })[]; }; }, { where?: Prisma.DreamWhereInput | undefined; orderBy?: Prisma.Enumerable<Prisma.DreamOrderByWithRelationInput> | undefined; cursor?: Prisma.DreamWhereUniqueInput | undefined; take?: number | undefined; skip?: number | undefined; distinct?: Prisma.Enumerable<Prisma.DreamScalarFieldEnum> | undefined; select?: true | Prisma.DreamCountAggregateInputType | undefined; }> | undefined {
         return {
             where: {

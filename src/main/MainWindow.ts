@@ -37,6 +37,12 @@ export default class MainWindow extends BrowserWindow {
         return await dreamRepository.getPageCount(searchFilter, pageSize);
     }
 
+    private async handleDeleteDream(event: IpcMainInvokeEvent, dreamId: number): Promise<boolean> {
+        const dreamRepository = new DreamRepository();
+
+        return await dreamRepository.deleteDream(dreamId);
+    }
+
     /**
      * Sets up all the handlers for messages sent from the main window
      */
@@ -45,5 +51,6 @@ export default class MainWindow extends BrowserWindow {
 
         ipcMain.handle('main:getDreamPage', this.handleGetDreamPage);
         ipcMain.handle('main:getDreamPageCount', this.handleGetDreamPageCount);
+        ipcMain.handle('main:deleteDream', this.handleDeleteDream);
     }
 }

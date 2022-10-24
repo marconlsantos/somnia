@@ -7,5 +7,6 @@ contextBridge.exposeInMainWorld('dreamsAPI', {
         pageSize: number,
         currentPage: number) => ipcRenderer.invoke('main:getDreamPage', searchFilter, pageSize, currentPage),
     getDreamPageCount: (searchFilter: string,
-        pageSize: number) => ipcRenderer.invoke('main:getDreamPageCount', searchFilter, pageSize)
+        pageSize: number) => ipcRenderer.invoke('main:getDreamPageCount', searchFilter, pageSize),
+    deleteDream: (dreamId: number) => ipcRenderer.invoke('main:deleteDream', dreamId)
 });
