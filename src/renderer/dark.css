@@ -1,0 +1,13 @@
+:root {
+
+    --primary-color: var(--orange-color);
+    --primary-color-light: var(--orange-color-light);
+    --primary-color-very-light: var(--orange-color-very-light);
+    --primary-color-dark: var(--orange-color-dark);
+    --primary-color-very-dark: var(--orange-color-very-dark);
+    --primary-box-shadow-color: var(--orange-box-shadow-color);
+    --primary-box-shadow-color-darker: var(--orange-box-shadow-color-darker);
+    --text-color-on-primary-color-bg: var(--text-color-on-orange-color-bg);
+
+    --dm-modal-overlay-bg-color: rgba(0, 0, 0, 0.3);
+}

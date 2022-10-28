@@ -143,7 +143,7 @@ const DreamList: Component<{ filter: Accessor<string>; }> = (props) => {
                             <tr>
                                 <td class="text-center" >
                                     <a onClick={() => showDeleteDreamModal(dream.title, dream.id)}>
-                                        <AiOutlineDelete color="red" />
+                                        <AiOutlineDelete color="red" size={20} />
                                     </a>
                                 </td>
                                 <td>{dream.dreamedAt.toDateString()}</td>
@@ -156,7 +156,7 @@ const DreamList: Component<{ filter: Accessor<string>; }> = (props) => {
                     <Show when={dreamsToShow()?.length == 0}>
                         <tfoot>
                             <tr>
-                                <td colSpan={3} class="text-center">No dreams available.</td>
+                                <td colSpan={4} class="text-center">No dreams available.</td>
                             </tr>
                         </tfoot>
                     </Show>

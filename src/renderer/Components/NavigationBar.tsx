@@ -29,8 +29,8 @@ const NavigationBar: Component<{ setFilter: Setter<string>; }> = (props) => {
                             ref={filter}
                             onKeyDown={handleFilterKeyDown} />
                         <div class="input-group-append">
-                            <button class="btn" onClick={handleSearchClick} ref={searchButton}>
-                                <TbListSearch class="align-middle" size={24} />
+                            <button class="btn btn-primary" onClick={handleSearchClick} ref={searchButton}>
+                                <TbListSearch size={26} />
                                 <span class="sr-only">Search dreams</span>
                             </button>
                         </div>

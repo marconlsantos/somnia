@@ -2,6 +2,7 @@
 import { render } from 'solid-js/web';
 
 import "../../node_modules/halfmoon/css/halfmoon-variables.min.css";
+import "../renderer/dark.css";
 
 import App from './App';
 
