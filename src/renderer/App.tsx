@@ -2,11 +2,7 @@ import { Component, createEffect, createSignal, ErrorBoundary } from 'solid-js';
 import DreamList from "./Components/DreamList";
 import NavigationBar from './Components/NavigationBar';
 
-import * as halfmoon from 'halfmoon';
-
 const App: Component = () => {
-  halfmoon.toggleDarkMode();
-
   const [currentFilter, setCurrentFilter] = createSignal("");
 
   createEffect(() => {

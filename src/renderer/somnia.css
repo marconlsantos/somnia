@@ -1,5 +1,6 @@
 :root {
 
+    /* Default overrides  */
     --primary-color: var(--orange-color);
     --primary-color-light: var(--orange-color-light);
     --primary-color-very-light: var(--orange-color-very-light);
@@ -9,5 +10,5 @@
     --primary-box-shadow-color-darker: var(--orange-box-shadow-color-darker);
     --text-color-on-primary-color-bg: var(--text-color-on-orange-color-bg);
 
-    --dm-modal-overlay-bg-color: rgba(0, 0, 0, 0.3);
+    --modal-overlay-bg-color: rgba(0, 0, 0, 0.33);
 }
