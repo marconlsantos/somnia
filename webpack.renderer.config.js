@@ -1,11 +1,13 @@
 const rules = require('./webpack.rules');
 
-rules.push({
-  test: /\.css$/,
-  use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
-},
+rules.push(
+  {
+    test: /\.css$/,
+    use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+  },
   {
     test: /\.(png|svg|jpg|jpeg|gif)$/,
+    exclude: [/(node_modules|\.webpack|out)/],
     type: "asset/resource",
     generator: {
       filename: "[name][ext]"

@@ -33,14 +33,14 @@ module.exports = {
         "mainConfig": "./webpack.main.config.js",
         "jsonStats": true,
         "renderer": {
-          "config": "./webpack.renderer.config.js",
           "jsonStats": true,
+          "config": "./webpack.renderer.config.js",
           "entryPoints": [
             {
               "html": "./src/renderer/index.html",
               "js": "./src/renderer/renderer.tsx",
               "preload": {
-                js: "./src/renderer/preload.ts"
+                "js": "./src/renderer/preload.ts"
               },
               "name": "main_window"
             }

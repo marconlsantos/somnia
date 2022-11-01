@@ -14,7 +14,11 @@
             },
             // runtimeArgs will be passed directly to your Electron application
             "runtimeArgs": [],
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
+            "outFiles": [
+                "${workspaceFolder}/.webpack/**/*.js",
+                "!**/node_modules/**"
+            ]
         }
     ]
 }
