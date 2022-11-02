@@ -43,6 +43,18 @@ export default class MainWindow extends BrowserWindow {
         return await dreamRepository.deleteDream(dreamId);
     }
 
+    private async handleSaveDream(event: IpcMainInvokeEvent, dream: Dream): Promise<boolean> {
+        const dreamRepository = new DreamRepository();
+
+        return await dreamRepository.saveDream(dream);
+    }
+
+    private async handleGetDream(event: IpcMainInvokeEvent, id: number): Promise<Dream | null> {
+        const dreamRepository = new DreamRepository();
+
+        return await dreamRepository.getDream(id);
+    }
+
     /**
      * Sets up all the handlers for messages sent from the main window
      */
@@ -52,5 +64,7 @@ export default class MainWindow extends BrowserWindow {
         ipcMain.handle('main:getDreamPage', this.handleGetDreamPage);
         ipcMain.handle('main:getDreamPageCount', this.handleGetDreamPageCount);
         ipcMain.handle('main:deleteDream', this.handleDeleteDream);
+        ipcMain.handle('main:saveDream', this.handleSaveDream);
+        ipcMain.handle('main:getDream', this.handleGetDream);
     }
 }

@@ -7,18 +7,19 @@ export default class DreamRepository {
 
         let result: Dream[] = [];
 
-        try {
-            const pagingArgs = {
-                take: pageSize,
-                skip: pageSize * (currentPage - 1)
-            };
+        const commonCriteria = {
+            take: pageSize,
+            skip: pageSize * (currentPage - 1),
+            orderBy: { dreamedAt: Prisma.SortOrder.desc }
+        };
 
+        try {
             if (isNullOrWhiteSpace(searchFilter)) {
-                const argsWithFilter = { ...pagingArgs, ...this.GetSubsetFrom(searchFilter) };
+                result = await DreamRepository.client.dream.findMany(commonCriteria);
+            } else {
+                const argsWithFilter = { ...commonCriteria, ...this.getCriteriaFor(searchFilter) };
 
                 result = await DreamRepository.client.dream.findMany(argsWithFilter);
-            } else {
-                result = await DreamRepository.client.dream.findMany(pagingArgs);
             }
 
         } catch (error) {
@@ -36,12 +37,50 @@ export default class DreamRepository {
 
         try {
             if (isNullOrWhiteSpace(searchFilter)) {
-                result = await DreamRepository.client.dream.count(this.GetSubsetFrom(searchFilter));
-            } else {
                 result = await DreamRepository.client.dream.count();
+            } else {
+                result = await DreamRepository.client.dream.count(this.getCriteriaFor(searchFilter));
             }
 
             result = Math.ceil(result / pageSize);
+        } catch (error) {
+            console.error(error);
+        }
+        finally {
+            DreamRepository.client.$disconnect;
+        }
+
+        return result;
+    }
+
+    async saveDream(dream: Dream): Promise<boolean> {
+        try {
+            if (!dream.id || dream.id === 0) {
+                //create data to make sure new id is generated 
+                await DreamRepository.client.dream.create({
+                    data: {
+                        dreamedAt: dream.dreamedAt,
+                        title: dream.title,
+                        narration: dream.narration,
+                        interpretation: dream.interpretation
+                    }
+                });
+            }
+            else {
+                await DreamRepository.client.dream.update({ where: { id: dream.id }, data: dream });
+            }
+        } catch (error) {
+            return false;
+        }
+
+        return true;
+    }
+
+    async getDream(dreamId: number): Promise<Dream | null> {
+        let result: Dream | null = null;
+
+        try {
+            result = await DreamRepository.client.dream.findUniqueOrThrow({ where: { id: dreamId } });
         } catch (error) {
             console.error(error);
         }
@@ -62,19 +101,19 @@ export default class DreamRepository {
         return true;
     }
 
-    private GetSubsetFrom(searchFilter: string): Prisma.Subset<{ where: { OR: ({ title: { contains: string; }; } | { narration: { contains: string; }; } | { interpretation: { contains: string; }; })[]; }; }, { where?: Prisma.DreamWhereInput | undefined; orderBy?: Prisma.Enumerable<Prisma.DreamOrderByWithRelationInput> | undefined; cursor?: Prisma.DreamWhereUniqueInput | undefined; take?: number | undefined; skip?: number | undefined; distinct?: Prisma.Enumerable<Prisma.DreamScalarFieldEnum> | undefined; select?: true | Prisma.DreamCountAggregateInputType | undefined; }> | undefined {
+    private getCriteriaFor(filter: string) {
         return {
             where: {
                 OR: [
-                    { title: { contains: searchFilter } },
-                    { narration: { contains: searchFilter } },
-                    { interpretation: { contains: searchFilter } }
+                    { title: { contains: filter } },
+                    { narration: { contains: filter } },
+                    { interpretation: { contains: filter } }
                 ]
             }
         };
     }
 }
 
-function isNullOrWhiteSpace(searchFilter: string) {
-    return searchFilter && searchFilter.trim().length;
+function isNullOrWhiteSpace(filter: string) {
+    return !filter || filter.trim().length === 0;
 }

@@ -22,6 +22,8 @@ export default class SomniaApp {
         SomniaApp.mainWindow = new MainWindow({
             width: 1281,
             height: 854,
+            minWidth: 800,
+            minHeight: 600,
             webPreferences: {
                 preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
             }
