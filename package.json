@@ -1,8 +1,8 @@
 {
   "name": "somnia",
   "productName": "somnia",
-  "version": "0.0.1",
-  "description": "Dream logger for dream analysis",
+  "version": "0.1.0",
+  "description": "A simple dream log to keep track of your inner life.",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",

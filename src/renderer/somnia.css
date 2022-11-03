@@ -1,5 +1,4 @@
 :root {
-
     /* Default overrides  */
     --primary-color: var(--orange-color);
     --primary-color-light: var(--orange-color-light);
@@ -9,6 +8,17 @@
     --primary-box-shadow-color: var(--orange-box-shadow-color);
     --primary-box-shadow-color-darker: var(--orange-box-shadow-color-darker);
     --text-color-on-primary-color-bg: var(--text-color-on-orange-color-bg);
-
     --modal-overlay-bg-color: rgba(0, 0, 0, 0.33);
+}
+
+form input[required]:valid:not(:focus),
+form textarea[required]:valid:not(:focus) {
+    border: 1px solid var(--success-color);
+}
+
+form input[required]:invalid:not(:focus),
+form textarea[required]:invalid:not(:focus) {
+    border: 1px solid var(--danger-color-dark);
+    box-shadow: 0 0 4px var(--danger-color-light);
+    background: var(--danger-color-very-light);
 }

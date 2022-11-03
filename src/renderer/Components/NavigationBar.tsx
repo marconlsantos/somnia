@@ -37,7 +37,7 @@ const NavigationBar: Component<
                     <div class="navbar-content ml-auto">
                         <span class="form-inline">
                             <div class="input-group">
-                                <input type="text"
+                                <input type="search"
                                     class="form-control"
                                     placeholder="Search dreams"
                                     ref={filter}

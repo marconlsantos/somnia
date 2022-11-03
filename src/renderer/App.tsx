@@ -1,4 +1,4 @@
-import { Component, createEffect, createSignal, ErrorBoundary, Match, Switch } from 'solid-js';
+import { Component, createEffect, createSignal, ErrorBoundary, Match, Show, Switch } from 'solid-js';
 import DreamEdit from './Components/DreamEdit';
 import DreamList from "./Components/DreamList";
 import NavigationBar from './Components/NavigationBar';
@@ -15,7 +15,9 @@ const App: Component = () => {
   return (
     <ErrorBoundary fallback={err => err}>
       <div class="page-wrapper with-navbar">
-        <NavigationBar setFilter={setCurrentFilter} setIsEditing={setIsEditing} setDreamId={setDreamId} />
+        <Show when={!isEditing()}>
+          <NavigationBar setFilter={setCurrentFilter} setIsEditing={setIsEditing} setDreamId={setDreamId} />
+        </Show>
         <div class="content-wrapper">
           <div class='content m-10'>
             <Switch fallback={<DreamList filter={currentFilter} setIsEditing={setIsEditing} setDreamId={setDreamId} />}>

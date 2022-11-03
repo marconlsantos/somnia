@@ -13,7 +13,7 @@ import {
     Setter,
     Show
 } from 'solid-js';
-import { AiOutlineDelete, AiOutlineEdit } from 'solid-icons/ai';
+import { AiOutlineDelete } from 'solid-icons/ai';
 import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
 import { Dream } from '@prisma/client';
 
@@ -151,9 +151,9 @@ const DreamList: Component<
                         </thead>
                         <tbody>
                             <For each={dreamsToShow()}>{(dream) =>
-                                <tr>
+                                <tr onClick={() => editDream(dream.id)}>
                                     <td>{dream.dreamedAt.toLocaleString()}</td>
-                                    <td><a onClick={() => editDream(dream.id)}>{dream.title}</a></td>
+                                    <td>{dream.title}</td>
                                     <td>{`${dream.narration.substring(0, 25)} ...`}</td>
                                     <td class="text-center" >
                                         <a onClick={() => showDeleteDreamModal(dream.title, dream.id)}>
