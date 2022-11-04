@@ -11,10 +11,12 @@ const App: Component = () => {
   const [dreamId, setDreamId] = createSignal(0);
 
   createEffect(() => {
-    console.info(`[Somnia] Current filter is ${currentFilter()}`);
+    console.debug(`[Somnia] Current filter is ${currentFilter()}`);
   });
 
   onMount(() => {
+    console.debug("[Somnia] App onMount executing");
+
     halfmoon.toggleDarkMode();
   });
 

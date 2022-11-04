@@ -15,7 +15,7 @@ export default class MainWindow extends BrowserWindow {
      * Creates the Somnia app main window 
      */
     constructor(options: BrowserWindowConstructorOptions) {
-        console.info("[Somnia] Main window construction executing");
+        console.debug("[Somnia] Main window construction executing");
 
         super(options);
     }
@@ -59,7 +59,7 @@ export default class MainWindow extends BrowserWindow {
      * Sets up all the handlers for messages sent from the main window
      */
     setHandlers() {
-        console.info("[Somnia] Setting handlers for main window");
+        console.debug("[Somnia] Setting handlers for main window");
 
         ipcMain.handle('main:getDreamPage', this.handleGetDreamPage);
         ipcMain.handle('main:getDreamPageCount', this.handleGetDreamPageCount);

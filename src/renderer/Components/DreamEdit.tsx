@@ -18,7 +18,7 @@ const DreamEdit: Component<
         createEffect(async () => {
             if (props.dreamId() === 0) return;
 
-            console.info(`[Somnia] Loading dream with id ${props.dreamId()}`);
+            console.debug(`[Somnia] Loading dream with id ${props.dreamId()}`);
 
             const dream = await window.dreamsAPI.getDream(props.dreamId());
 

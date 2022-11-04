@@ -52,7 +52,7 @@ const DreamList: Component<
         }));
 
         onMount(async () => {
-            console.info("[Somnia] Main window onMount execution");
+            console.debug("[Somnia] Main window onMount execution");
 
             await resetToFirstPage();
         });

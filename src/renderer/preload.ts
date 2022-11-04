@@ -1,7 +1,7 @@
 import { Dream } from '@prisma/client';
 import { contextBridge, ipcRenderer } from 'electron';
 
-console.info("[Somnia] Exposing dreamsAPI in the MainWorld (preload script)");
+console.debug("[Somnia] Exposing dreamsAPI in the MainWorld (preload script)");
 
 contextBridge.exposeInMainWorld('dreamsAPI', {
     getDreamPage: (searchFilter: string, pageSize: number, currentPage: number) =>

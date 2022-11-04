@@ -12,7 +12,7 @@ export default class SomniaApp {
     static mainWindow: MainWindow;
 
     private static onReady() {
-        console.info("[Somnia] Application onReady executing");
+        console.debug("[Somnia] Application onReady executing");
 
         // Create the browser window.
         SomniaApp.createMainWindow();
@@ -40,7 +40,7 @@ export default class SomniaApp {
     }
 
     private static onActivate() {
-        console.info("[Somnia] Application onActivate executing");
+        console.debug("[Somnia] Application onActivate executing");
 
         // On OS X it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
@@ -50,7 +50,7 @@ export default class SomniaApp {
     }
 
     private static onWindowAllClosed() {
-        console.info("[Somnia] Application onWindowAllClosed executing");
+        console.debug("[Somnia] Application onWindowAllClosed executing");
 
         if (process.platform !== 'darwin') {
             SomniaApp.application.quit();
@@ -58,7 +58,7 @@ export default class SomniaApp {
     }
 
     static main(app: App) {
-        console.info("[Somnia] Application starting");
+        console.debug("[Somnia] Application starting");
 
         SomniaApp.application = app;
 
