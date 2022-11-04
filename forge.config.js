@@ -1,6 +1,7 @@
 module.exports = {
   "packagerConfig": {
-    "darwinDarkModeSupport": true
+    "darwinDarkModeSupport": false,
+    "icon": "src/assets/somnia.icns"
   },
   "makers": [
     {

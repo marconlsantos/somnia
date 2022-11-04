@@ -1,6 +1,6 @@
 {
   "name": "somnia",
-  "productName": "somnia",
+  "productName": "Somnia",
   "version": "0.1.0",
   "description": "A simple dream log to keep track of your inner life.",
   "main": ".webpack/main",

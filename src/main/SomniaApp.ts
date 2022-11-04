@@ -24,6 +24,7 @@ export default class SomniaApp {
             height: 854,
             minWidth: 800,
             minHeight: 600,
+            icon: "../assets/somnia.png",
             webPreferences: {
                 preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
             }

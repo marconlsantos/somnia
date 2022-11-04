@@ -1,7 +1,9 @@
-import { Component, createEffect, createSignal, ErrorBoundary, Match, Show, Switch } from 'solid-js';
+import { Component, createEffect, createSignal, ErrorBoundary, Match, onMount, Show, Switch } from 'solid-js';
 import DreamEdit from './Components/DreamEdit';
 import DreamList from "./Components/DreamList";
 import NavigationBar from './Components/NavigationBar';
+
+import * as halfmoon from "halfmoon";
 
 const App: Component = () => {
   const [currentFilter, setCurrentFilter] = createSignal("");
@@ -10,6 +12,10 @@ const App: Component = () => {
 
   createEffect(() => {
     console.info(`[Somnia] Current filter is ${currentFilter()}`);
+  });
+
+  onMount(() => {
+    halfmoon.toggleDarkMode();
   });
 
   return (
