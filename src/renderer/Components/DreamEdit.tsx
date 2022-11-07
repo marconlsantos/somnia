@@ -16,7 +16,11 @@ const DreamEdit: Component<
         let saveButton: HTMLButtonElement | undefined;
 
         createEffect(async () => {
-            if (props.dreamId() === 0) return;
+            if (props.dreamId() === 0) {
+                saveButton!.disabled = true;
+
+                return;
+            }
 
             console.debug(`[Somnia] Loading dream with id ${props.dreamId()}`);
 
@@ -26,13 +30,13 @@ const DreamEdit: Component<
             titleInput!.value = dream.title;
             narrationInput!.value = dream.narration;
             interpretationInput!.value = dream.interpretation ?? "";
+
+            updateSaveButton();
         });
 
         onMount(handleOnMount);
 
         function handleOnMount() {
-            updateSaveButton();
-
             setValidationEventListeners(dreamedAtInput!);
 
             setValidationEventListeners(titleInput!);

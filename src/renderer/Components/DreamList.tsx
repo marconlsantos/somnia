@@ -151,10 +151,10 @@ const DreamList: Component<
                         </thead>
                         <tbody>
                             <For each={dreamsToShow()}>{(dream) =>
-                                <tr onClick={() => editDream(dream.id)}>
-                                    <td>{dream.dreamedAt.toLocaleString()}</td>
-                                    <td>{dream.title}</td>
-                                    <td>{`${dream.narration.substring(0, 25)} ...`}</td>
+                                <tr>
+                                    <td onClick={() => editDream(dream.id)}>{dream.dreamedAt.toLocaleString()}</td>
+                                    <td onClick={() => editDream(dream.id)}>{dream.title}</td>
+                                    <td onClick={() => editDream(dream.id)}>{`${dream.narration.substring(0, 25)} ...`}</td>
                                     <td class="text-center" >
                                         <a onClick={() => showDeleteDreamModal(dream.title, dream.id)}>
                                             <AiOutlineDelete color="red" size={20} />
