@@ -53,7 +53,6 @@
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "halfmoon": "^1.1.1",
     "node-loader": "^2.0.0",
-    "prisma": "^4.5.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.4.1",
     "ts-node": "^10.9.1",
@@ -62,6 +61,7 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "prisma": "^4.5.0",
     "@prisma/client": "^4.5.0",
     "electron-squirrel-startup": "^1.0.0",
     "solid-icons": "^1.0.4",

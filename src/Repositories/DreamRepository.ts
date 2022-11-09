@@ -1,7 +1,31 @@
 import { Dream, Prisma, PrismaClient } from "@prisma/client";
+import { exec } from "child_process";
+import { promisify } from "util";
 
 export default class DreamRepository {
     private static client = new PrismaClient();
+
+    static setDatabase(dbLocation: string) {
+        DreamRepository.SetDbLocation(dbLocation);
+
+        // to refresh the database in use
+        DreamRepository.client = new PrismaClient();
+    }
+
+    static async applyMigrations(dbLocation: string) {
+        DreamRepository.SetDbLocation(dbLocation);
+
+        console.debug(`[Somnia] Applying migrations to ${process.env['DATABASE_URL']}`);
+
+        const execute = promisify(exec);
+
+        const result = await execute("npx prisma migrate deploy");
+        console.log(`              ${result.stdout}`);
+    }
+
+    private static SetDbLocation(dbLocation: string) {
+        process.env['DATABASE_URL'] = `file:${dbLocation}`;
+    }
 
     async getPage(searchFilter: string, pageSize: number, currentPage: number): Promise<Dream[]> {
 
