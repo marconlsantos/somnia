@@ -1,5 +1,6 @@
 import { Dream } from "@prisma/client";
 import { App, BrowserWindow, dialog, ipcMain, IpcMainInvokeEvent, Menu } from "electron";
+import { existsSync } from "fs";
 import { rm } from "fs/promises";
 import DreamRepository from "../Repositories/DreamRepository";
 import MainWindow from "./MainWindow";
@@ -45,7 +46,9 @@ export default class SomniaApp {
             return;
         }
 
-        await rm(dialogValue.filePath);
+        if (existsSync(dialogValue.filePath)) {
+            await rm(dialogValue.filePath);
+        }
 
         await DreamRepository.applyMigrations(dialogValue.filePath);
 
